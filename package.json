@@ -2,17 +2,10 @@
   "name": "tatito-bot",
   "version": "1.0.0",
   "description": "",
-<<<<<<< HEAD
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-=======
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node index.js"
->>>>>>> 9b981a7 (feat: add daily reminder scheduler and message builder)
   },
   "repository": {
     "type": "git",
@@ -25,17 +18,12 @@
   },
   "homepage": "https://github.com/ghionedev/tatito-bot#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "dotenv": "^17.2.4",
-    "express": "^5.2.1"
-=======
     "better-sqlite3": "^12.6.2",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
     "node-cron": "^4.2.1",
     "openai": "^6.18.0",
     "sqlite3": "^5.1.7"
->>>>>>> 9b981a7 (feat: add daily reminder scheduler and message builder)
   },
   "type": "module"
 }
