@@ -2,6 +2,7 @@ import { interpretMessage } from "./services/ia.js";
 import { saveReminder } from "./db/reminders.js";
 import { startDailyCheck } from "./scheluder/dailyCheck.js";
 import { getLocalDateString } from "./utils/date.js";
+import { sendWhatsAppMessage } from "./services/whatsapp.js";
 
 import express from "express";
 import 'dotenv/config';
@@ -20,7 +21,8 @@ app.get("/", (req, res) => {
 
 app.post("/webhook/whatsapp", async (req, res) => {
   const message = req.body.Body;
-  const from = req.body.From;
+  const from = req.body.From.replace("whatsapp:", "");
+
 
   const interpretation = await interpretMessage(message);
   
@@ -48,4 +50,3 @@ app.listen(PORT, () => {
 });
 
 startDailyCheck();
-

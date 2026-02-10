@@ -8,6 +8,7 @@ db.prepare(`
     phone TEXT NOT NULL,
     content TEXT NOT NULL,
     date TEXT NOT NULL,
+    sent INTEGER DEFAULT 0,
     created_at TEXT NOT NULL
   )
 `).run();
