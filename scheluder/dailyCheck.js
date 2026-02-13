@@ -4,23 +4,30 @@ import { getLocalDateString } from "../utils/date.js";
 import { sendWhatsAppMessage } from "../services/whatsapp.js";
 
 function buildDailyMessage(reminders) {
-  let message = "Buen día ☀️\nHoy tenés:\n";
+  let message = "Buen dia.\nHoy tenes:\n";
 
   reminders.forEach((r) => {
-    message += `• ${r.content}\n`;
+    message += `- ${r.content}\n`;
   });
 
   return message;
 }
 
 export function startDailyCheck() {
+  if (process.env.CRON_ENABLED !== "true") {
+    console.log("?? Cron disabled (safe mode)");
+    return;
+  }
+
   cron.schedule("* * * * *", () => {
     const today = getLocalDateString();
 
-    const reminders = db.prepare(`
+    const reminders = db
+      .prepare(`
       SELECT * FROM reminders
       WHERE date = ? AND sent = 0
-    `).all(today);
+    `)
+      .all(today);
 
     if (reminders.length === 0) return;
 
@@ -34,5 +41,5 @@ export function startDailyCheck() {
     `).run(today);
   });
 
-  console.log("🕘 Daily scheduler started (09:00 local time)");
+  console.log("Daily scheduler started");
 }
