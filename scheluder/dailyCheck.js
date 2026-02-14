@@ -15,7 +15,7 @@ function buildDailyMessage(reminders) {
 
 export function startDailyCheck() {
   if (process.env.CRON_ENABLED !== "true") {
-    console.log("?? Cron disabled (safe mode)");
+    console.log("\u{1F6D1} Cron disabled (safe mode)");
     return;
   }
 
@@ -43,3 +43,4 @@ export function startDailyCheck() {
 
   console.log("Daily scheduler started");
 }
+
